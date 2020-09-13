@@ -11,7 +11,7 @@ def inArr(theData, newData):
     return False
 
 
-print("Welcome! Please enter the parameters below when prompted. This program will take a random sample of data from the data set in data.txt and find the mean. This will be repeated to form a bar graph.")
+print("Welcome! \nPlease enter the parameters below when prompted. \nThis program will take a random sample of data from the data set in data.txt and find the mean. \nThis will be repeated to form a bar graph. \nIf there are too many bars, the program will create multiple bar graphs so that you can easily read the x-axis.")
 file = []
 f = open("data.txt", "r")
 for x in f:
@@ -19,7 +19,7 @@ for x in f:
 sampleSize = int(input("Please enter the sample size: "))
 while sampleSize > len(file):
     sampleSize = int(input("\nPlease try again. Your sample size is larger than the amount of data: "))
-numberTimesToRepeat = int(input("\nPlease enter the number of times you want this to repeat: "))
+numberTimesToRepeat = int(input("\nPlease enter the number of times you want this to repeat:\n "))
 means = []
 
 for i in range(numberTimesToRepeat-1):
@@ -51,12 +51,37 @@ for i in range(len(means)):
         graph[1].append(1)
 
 xObjects = graph[0]
-y_pos = np.arange(len(xObjects))
 occurrences = graph[1]
 
-plt.bar(y_pos, occurrences, align='center', alpha=0.5)
-plt.xticks(y_pos, xObjects)
-plt.ylabel('Occurrences')
-plt.title('Statistics')
+numFigure = 0
+numOfCharacters = 0
+currentOccurrences = []
+currentXObjects = []
+for i in range(len(occurrences)):
+    if numOfCharacters + len(str(xObjects[i])) > 102:
+        numFigure += 1
+        plt.figure(numFigure)
+        y_pos = np.arange(len(currentXObjects))
+        plt.bar(y_pos, currentOccurrences, align='center', alpha=0.5)
+        plt.xticks(y_pos, currentXObjects)
+        plt.ylabel('Occurrences')
+        plt.title('Statistics')
+        numOfCharacters = 0
+        currentOccurrences = []
+        currentXObjects = []
+    numOfCharacters += len(str(xObjects[i]))
+    currentOccurrences.append(occurrences[i])
+    currentXObjects.append(xObjects[i])
+if len(currentXObjects) > 0:
+    numFigure += 1
+    plt.figure(numFigure)
+    y_pos = np.arange(len(currentXObjects))
+    plt.bar(y_pos, currentOccurrences, align='center', alpha=0.5)
+    plt.xticks(y_pos, currentXObjects)
+    plt.ylabel('Occurrences')
+    plt.title('Statistics')
+    numOfCharacters = 0
+    currentOccurrences = []
+    currentXObjects = []
 
 plt.show()
