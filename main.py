@@ -35,9 +35,6 @@ while sample_size > len(file):
 repetitions = 100 #Hard-coded value for testing purposes
 # repetitions = int(input("\nPlease enter the number of times you want this to repeat: "))
 
-decimal_places = 1 #Hard-coded value for testing purposes
-# repetitions = int(input("\nPlease enter the number of decimal places you want this to display: "))
-
 means = {} #Dictionary. Key = mean, value = amount
 
 for i in range(repetitions): #Record the means and add to aggregate list
