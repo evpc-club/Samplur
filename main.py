@@ -10,13 +10,6 @@ def partInRange(first, second, arr):
             returnArr.append(arr[z])
     return returnArr
 
-def lenOfStrArr(arr):
-    editedArr = arr.copy()
-    for z in range(len(arr)):
-        editedArr[z] = len(editedArr[z])
-    return sum(editedArr)
-
-
 def lenOfIntArr(arr):
     editedArr = arr.copy()
     for z in range(len(arr)):
