@@ -97,6 +97,15 @@ else:
     plt.xticks(y_pos, newMeans)
     plt.ylabel('Occurrences')
     plt.title('Statistics')
+    plt.figure(2)
+    y_pos = np.arange(len(newMeans))
+    percentOfData = []
+    for i in range(len(newOccurrences)):
+        percentOfData.append(newOccurrences[i]/sum(newOccurrences)*100)
+    plt.bar(y_pos, percentOfData, align='center', alpha=0.5)
+    plt.xticks(y_pos, newMeans)
+    plt.ylabel('% of Data')
+    plt.title('Statistics')
 
 
 plt.show()
