@@ -3,14 +3,12 @@ import matplotlib.pyplot as plt
 import random
 plt.rcdefaults()
 
-
 def partInRange(first, second, arr):
     returnArr = []
     for z in range(len(arr)):
         if first <= arr[z] < second:
             returnArr.append(arr[z])
     return returnArr
-
 
 def lenOfStrArr(arr):
     editedArr = arr.copy()
@@ -33,24 +31,23 @@ def inArr(theData, newData):
     return False
 
 
-print("Welcome!")
-print("Please enter the parameters below when prompted.")
-print("This program will take a random sample of data from the data set in data.txt and find the mean.")
-print("This will be repeated to form a bar graph.")
-print("If there are too many bars, the program will create multiple bar graphs so that you can easily read the x-axis.")
 file = []
 f = open("data.txt", "r")
 for x in f:
     file.append(int(x))
-sampleSize = int(input("Please enter the sample size: "))
-while sampleSize > len(file):
-    sampleSize = int(input("\nPlease try again. Your sample size is larger than the amount of data: "))
-numberTimesToRepeat = int(input("\nPlease enter the number of times you want this to repeat: "))
+
+sample_size = int(input("Please enter the sample size: ")) #Take the sample
+
+while sample_size > len(file):
+    sample_size = int(input("\nPlease try again. Your sample size is larger than the amount of data: "))
+
+repetitions = int(input("\nPlease enter the number of times you want this to repeat: "))
 means = []
 
-for i in range(numberTimesToRepeat-1):
-    currentData = random.sample(file, sampleSize)
-    means.append(sum(currentData)/sampleSize)
+#Record the means and add to aggregate list
+for i in range(repetitions-1):
+    currentData = random.sample(file, sample_size)
+    means.append(sum(currentData)/sample_size)
 
 graph = [[], []]
 means.sort()
