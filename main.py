@@ -1,7 +1,13 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import random
+from enum import Enum
 plt.rcdefaults()
+
+
+class Mode(Enum):
+    PERCENT_IN = 1
+    DATA_IN = 2
 
 
 def partInRange(first, second, arr):
@@ -40,15 +46,52 @@ print("This will be repeated to form a bar graph.")
 print("If there are too many bars, the program will create multiple bar graphs so that you can easily read the x-axis.")
 file = []
 f = open("data.txt", "r")
-for x in f:
-    file.append(int(x))
-sampleSize = int(input("Please enter the sample size: "))
-while sampleSize > len(file):
-    sampleSize = int(input("\nPlease try again. Your sample size is larger than the amount of data: "))
+mode = Mode.DATA_IN
+sampleSize = 0
+if int(input("\nIs your input:\n1. Percentages\n2. Raw Data\n")) == 1:
+    mode = Mode.PERCENT_IN
+if mode == Mode.PERCENT_IN:
+    fileDict = {}
+    maxDecimals = 0
+    for x in f:
+        inFromFile = x.split(sep=" ")
+        inFromFile[1] = inFromFile[1].rstrip()
+        if inFromFile[0] in fileDict:
+            fileDict[inFromFile[0]] = float(fileDict[inFromFile[0]]) + float(inFromFile[1])
+        else:
+            fileDict[inFromFile[0]] = float(inFromFile[1])
+        try:
+            decimalsInNum = len(inFromFile[1].split(sep=".")[1])
+        except IndexError:
+            decimalsInNum = 0
+        if decimalsInNum > maxDecimals:
+            maxDecimals = decimalsInNum
+    for x in fileDict:
+        fileDict[x] = round(float(fileDict[x]) * (10 ** maxDecimals))
+        for y in range(int(fileDict[x])):
+            file.append(float(x))
+    sampleSize = int(input("\nEnter the sample size: "))
+    powerOfTenToMultiplyBy = 0
+    while sampleSize > len(file) * (10**powerOfTenToMultiplyBy):
+        powerOfTenToMultiplyBy += 1
+    x = 0
+    while x < powerOfTenToMultiplyBy:
+        savedFile = file.copy()
+        file = []
+        for y in range(10):
+            file += savedFile
+        x += 1
+else:
+    for x in f:
+        file.append(int(x))
+    sampleSize = int(input("\nEnter the sample size: "))
+    while sampleSize > len(file):
+        sampleSize = int(input("\nPlease try again. Your sample size is larger than the amount of data: "))
+
 numberTimesToRepeat = int(input("\nPlease enter the number of times you want this to repeat: "))
 means = []
 
-for i in range(numberTimesToRepeat-1):
+for i in range(numberTimesToRepeat):
     currentData = random.sample(file, sampleSize)
     means.append(sum(currentData)/sampleSize)
 
