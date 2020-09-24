@@ -1,21 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Samplur</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <style>
-    @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
-</style>
-
-
-<body style="background-color: #31898c;">
-    <style>
-        div.form
+    div.form
     {
         display: block;
         text-align: center;
@@ -83,31 +75,17 @@
         color: rgba(0, 131, 169, 1);
         text-decoration: none;
     }
-    </style>
-    <h1 class = "textClass">SAMPLUR</h1>
-    <div style="width: 450px; height:10px;background:white; margin-left: auto; margin-right: auto;"></div>
-    <h1 class = "textClassSmall">Evergreen Valley Programming Club</h1>
+</style>
 
-    <form method = "POST" action = "/send">
-        <div style = "padding-top: 50px;" class="form">
-            <label class = "textClass">Enter the sample size: </label>
-            <input class="formText" type = "number" name = "size">
-        </div>
-        <div style = "padding-top: 50px;"class="form">
-                <label class = "textClass">Enter the repeat count:</label>
-                <input class="formText" type="number"  name = "repeat">
-        </div>
-        <div style = "padding-top: 50px;"class="form">
-            <label class = "textClass">Enter the data set with commas:</label>
-            <input class="formText" type="text"  name = "data">
-        </div>
+<body style="background-color: #31898c;">
+    <form method = "POST" action = "/back">
         <div style = "padding-top: 25px;"class = "form">
-            <input class = "sub" type = "submit" value = "Submit">
+            <input class = "sub" type = "submit" value = "Back">
         </div>
     </form>
-    <!-- <div style = "padding-top: 25px;"class = "form">
-        <button>Submit</button>
-    </div> -->
-</body>
 
+    <h1>Size is {{size}}</h1>
+    <h1>Repeat is {{repeat}}</h1>
+    <h1>Data is {{data}}</h1>
+</body>
 </html>
