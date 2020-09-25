@@ -2,7 +2,6 @@ import matplotlib.pyplot as plt
 import random, math, os
 plt.rcdefaults()
 
-
 #Return buckets based on frequency
 def generate_axes(data, buckets):
     max_mean = int(max(data))
@@ -57,10 +56,3 @@ graph = ax.bar(x_axis, y_axis, width=0.5,  align='center')
 plt.ylabel('Occurrences')
 plt.xlabel('Mean Ranges')
 plt.title('Statistics')
-
-if buckets < 30:
-    ax.set_xticklabels(x_axis, rotation=60)
-else:
-    ax.set_xticklabels([])
-
-plt.show()
