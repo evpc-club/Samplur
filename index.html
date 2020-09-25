@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html style="scroll-behavior: smooth;">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Samplur</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+</style>
+
+<body>
+  <script src = "scripts.js"></script>
+  <div style = "margin: auto; padding-top: 10px; width: 50%;">
+    <p class = "form" style = "margin: auto; padding-top: 10px; width: 50%;">
+      <label class='label' for='login' style = 'font-weight:bold; text-align: center; margin: auto; padding-top: 10px; width: 50%;'>Samplur</label>
+    </p>
+  </div>
+
+  <br> <br>
+
+  <form action='' class='form'>
+    <p class='field required'>
+      <label class='label'>Sample Size</label>
+      <input class='text-input' id='sample_size' required type='number' value=''>
+    </p>
+    <p class='field half required'>
+      <label class='label'>Buckets</label>
+      <input class='text-input' id='buckets' required type='number'>
+    </p>
+    <p class='field half required'>
+      <label class='label'>Cycle Count</label>
+      <input class='text-input' id='repetitions' required type='number'>
+    </p>
+    <!-- <div class='field'>
+      <label class='label'>Favourite JS framework</label>
+      <ul class='options'>
+        <li class='option'>
+          <input class='option-input' id='option-0' name='option' type='radio' value='0'>
+          <label class='option-label' for='option-0'>React</label>
+        </li>
+        <li class='option'>
+          <input class='option-input' id='option-1' name='option' type='radio' value='1'>
+          <label class='option-label' for='option-1'>Vue</label>
+        </li>
+      </ul>
+    </div> -->
+    <p class='field required'>
+      <label class='label' for='about'>Data Set (Separated by Any Non-Numeric Character)</label>
+      <textarea class='textarea' cols='50' id='data' rows='4' required type='text'></textarea>
+    </p>
+    <div style = "margin: auto; padding-top: 10px; width: 50%;">
+      <p class = "form" style = "margin: auto; padding-top: 10px; width: 50%;">
+        <input class='button' id = "button" onclick="buttonClick()" value='Test!' style = 'font-weight:bold; text-align: center; margin: auto; padding-top: 10px; width: 50%;'>
+      </p>
+    </div>
+  </form>
+
+  <div style="width=100;height=400; padding-top=100%">
+    <canvas id="graph"></canvas>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  </div>
+</body>
+
+</html>
