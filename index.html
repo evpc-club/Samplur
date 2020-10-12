@@ -57,6 +57,17 @@
     <canvas id="graph"></canvas>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
   </div>
+  <div style = "margin: auto; padding-top: 10px; width: 50%;">
+    <p class = "form" style = "margin: auto; padding-top: 10px; width: 50%;">
+      <label class='label' id = "mean" style = 'font-weight:bold; text-align: center; margin: auto; padding-top: 10px;'>mean</label>
+    </p>
+  </div>
+
+  <div style = "margin: auto; padding-top: 10px; width: 50%;">
+    <p class = "form" style = "margin: auto; padding-top: 10px; width: 50%;">
+      <label class='label' id='stdev' style = 'font-weight:bold; text-align: center; margin: auto; padding-top: 10px;'>stdev</label>
+    </p>
+  </div>
 </body>
 
 <script>
@@ -77,6 +88,7 @@ function buttonClick() {
     }
     var buckets = document.getElementById("buckets").value;
     var means = generate_means(size, data, repetitions);
+    calculate(means)
     var dict = generate_axes(means, buckets)
     x = dict["x"];
     y = dict["y"];
@@ -90,6 +102,17 @@ function buttonClick() {
     document.getElementById("button").value = "Resubmit!"
     created = true
   return false;
+}
+
+function calculate(means) {
+  avg = means.reduce((a, b) => a + b, 0)/means.length;
+  var sqr_diffs = means.map(function(value){
+    var diff = value - avg;
+    var sqr_diff = diff * diff;
+    return sqr_diff;
+});
+document.getElementById("mean").innerHTML = "Mean: " + avg;
+  document.getElementById("stdev").innerHTML = "Standard Dev: " + Math.sqrt(sqr_diffs.reduce((a, b) => a + b, 0)/sqr_diffs.length)
 }
 
 function parse_data(values, percents) {
